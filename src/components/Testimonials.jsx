@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ExternalLink, MessageSquarePlus } from "lucide-react";
+import { ExternalLink, MessageSquarePlus, Star } from "lucide-react";
 
 const GOOGLE_PROFILE_URL = "https://share.google/JGdZ8FiJMAV8rVfCf";
 const GOOGLE_WRITE_REVIEW_URL = "https://g.page/r/CUztiFwmssEBEBM/review";
@@ -48,7 +48,7 @@ const realGoogleReviews = [
   },
 ];
 
-function GoogleLogo({ className = "w-5 h-5" }) {
+function GoogleLogo({ className = "w-4 h-4" }) {
   return (
     <svg className={className} viewBox="0 0 24 24" aria-hidden="true">
       <path
@@ -71,60 +71,94 @@ function GoogleLogo({ className = "w-5 h-5" }) {
   );
 }
 
-export default function Testimonials() {
-  const visibleReviews = realGoogleReviews.slice(0, 10);
+function ReviewCard({ review, idx }) {
+  const [expanded, setExpanded] = useState(false);
+  const isLong = review.text.length > 260;
+  const displayedText =
+    isLong && !expanded ? `${review.text.slice(0, 260).trim()}...` : review.text;
 
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.55, delay: (idx % 3) * 0.08 }}
+      className="group relative bg-[#FAF7F0] border border-[#B89A62]/45 hover:border-[#641F32]/50 p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-[0_8px_30px_rgba(23,21,19,0.03)] hover:shadow-[0_14px_38px_rgba(100,31,50,0.07)]"
+    >
+      <div>
+        {/* Top Reviewer Row */}
+        <div className="flex items-center justify-between gap-3 mb-5 pb-4 border-b border-[#D8C19A]/45">
+          <div className="flex items-center gap-3.5">
+            <div className="w-10 h-10 rounded-full bg-[#641F32] text-[#FAF7F0] font-serif text-lg flex items-center justify-center shrink-0 uppercase tracking-wide">
+              {review.reviewerName.charAt(0)}
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-[#171513] tracking-wide">
+                {review.reviewerName}
+              </p>
+              <div className="flex items-center gap-0.5 mt-1" aria-label="5 out of 5 stars on Google">
+                {[...Array(5)].map((_, sIdx) => (
+                  <Star
+                    key={sIdx}
+                    size={12}
+                    className="fill-[#B89A62] text-[#B89A62]"
+                  />
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center gap-1.5 px-2.5 py-1 bg-[#F3ECE0] border border-[#D8C19A]/50">
+            <GoogleLogo className="w-3.5 h-3.5" />
+            <span className="text-[10px] uppercase tracking-[0.14em] text-[#171513]/70 font-medium">
+              Verified
+            </span>
+          </div>
+        </div>
+
+        {/* Review Quote */}
+        <p className="text-sm sm:text-[15px] text-[#171513]/85 leading-[1.75] font-light">
+          &ldquo;{displayedText}&rdquo;
+        </p>
+
+        {isLong && (
+          <button
+            type="button"
+            onClick={() => setExpanded(!expanded)}
+            className="mt-3 text-xs uppercase tracking-[0.16em] text-[#641F32] font-medium hover:text-[#4A1524] transition-colors"
+          >
+            {expanded ? "Show Less" : "Read Full Story"}
+          </button>
+        )}
+      </div>
+    </motion.article>
+  );
+}
+
+export default function Testimonials() {
   return (
     <section
       id="reviews"
-      className="py-20 lg:py-28 bg-[#D8C19A]/20 border-t border-[#D8C19A]/50"
+      className="py-24 lg:py-32 bg-[#F3ECE0]/70 border-t border-[#D8C19A]/50"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="max-w-2xl mx-auto text-center mb-14">
-          <p className="text-xs uppercase tracking-[0.26em] text-[#641F32] font-medium">
-            Google Business Profile
+        <div className="max-w-2xl mx-auto text-center mb-16">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-[#641F32] font-medium">
+            Verified Google Reviews
           </p>
-          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#171513] mt-2">
-            Client Love &amp; Google Reviews
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#171513] mt-3 leading-tight">
+            Words of Trust &amp;{" "}
+            <span className="italic text-[#641F32] font-normal">Appreciation</span>
           </h2>
-          <p className="text-base text-[#171513]/75 mt-3 font-light">
-            Real words from brides, families, and long-time clients on Google.
+          <div className="w-16 h-[1px] bg-[#B89A62] mx-auto my-5" />
+          <p className="text-sm sm:text-base text-[#171513]/75 font-light leading-relaxed">
+            Genuine reflections shared by brides, families, and long-time clients on Google.
           </p>
         </div>
 
         {/* 10 Real Google Reviews Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {visibleReviews.map((review, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.04 }}
-              className="bg-[#FAF7F0] border border-[#B89A62]/50 p-7 flex flex-col justify-between"
-            >
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-[#D8C19A]/50">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-[#641F32] text-[#FAF7F0] font-serif text-base flex items-center justify-center shrink-0 uppercase">
-                      {review.reviewerName.charAt(0)}
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-[#171513]">
-                        {review.reviewerName}
-                      </p>
-                      <p className="text-[11px] text-[#171513]/55">
-                        Google Review
-                      </p>
-                    </div>
-                  </div>
-                  <GoogleLogo className="w-4 h-4 shrink-0" />
-                </div>
-                <p className="text-sm text-[#171513]/85 leading-relaxed font-light">
-                  &ldquo;{review.text}&rdquo;
-                </p>
-              </div>
-            </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-7 mb-14 items-start">
+          {realGoogleReviews.map((review, idx) => (
+            <ReviewCard key={idx} review={review} idx={idx} />
           ))}
         </div>
 
@@ -134,19 +168,19 @@ export default function Testimonials() {
             href={GOOGLE_PROFILE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-7 py-3.5 bg-[#641F32] text-[#FAF7F0] text-xs uppercase tracking-[0.18em] font-medium hover:bg-[#4d1726] transition-colors inline-flex items-center gap-2.5"
+            className="px-8 py-4 bg-[#641F32] text-[#FAF7F0] text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#4A1524] transition-all duration-300 inline-flex items-center gap-2.5 shadow-sm"
           >
-            <span>View More Reviews on Google</span>
+            <span>Read All Reviews on Google</span>
             <ExternalLink size={14} />
           </a>
           <a
             href={GOOGLE_WRITE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-7 py-3.5 bg-[#FAF7F0] text-[#171513] border border-[#B89A62] text-xs uppercase tracking-[0.18em] font-medium hover:bg-[#D8C19A]/25 transition-colors inline-flex items-center gap-2.5"
+            className="px-8 py-4 bg-[#FAF7F0] text-[#171513] border border-[#B89A62] text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#D8C19A]/25 transition-all duration-300 inline-flex items-center gap-2.5"
           >
             <MessageSquarePlus size={15} className="text-[#641F32]" />
-            <span>Write a Review on Google</span>
+            <span>Write a Review</span>
           </a>
         </div>
       </div>

@@ -28,3 +28,31 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #B89A62;
 }
+@layer base {
+  :root {
+    --bg-ivory: #FAF7F0;
+    --bg-champagne: #F3ECE0;
+    --accent-burgundy: #641F32;
+    --accent-burgundy-hover: #4A1524;
+    --accent-gold: #B89A62;
+    --border-sand: #D8C19A;
+    --text-charcoal: #171513;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #FAF7F0;
+    color: #171513;
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: "Cormorant Garamond", Georgia, serif;
+  }
+}
+
+/* Subtle editorial hairline utility */
+.editorial-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 154, 98, 0.55), transparent);
+}

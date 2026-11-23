@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import { Calendar, Phone, MapPin, Send, MessageCircle, Sparkles } from "lucide-react";
 
 const WHATSAPP_NUMBER = "918073620462";
 const INSTAGRAM_URL = "https://www.instagram.com/makeoverbymangala/";
@@ -66,11 +66,11 @@ export default function Booking() {
   return (
     <section
       id="booking"
-      className="py-20 lg:py-28 bg-[#FAF7F0] border-t border-[#D8C19A]/40"
+      className="py-24 lg:py-32 bg-[#FAF7F0] border-t border-[#D8C19A]/45"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left Invitation & Contact Info */}
+          {/* Left Studio Invitation & Direct Contact */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -78,101 +78,113 @@ export default function Booking() {
             transition={{ duration: 0.7 }}
             className="lg:col-span-5 space-y-6"
           >
-            <p className="text-xs uppercase tracking-[0.26em] text-[#B89A62] font-medium">
-              Reserve Your Date
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[#B89A62] font-medium">
+              Private Consultation
             </p>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#171513] leading-tight">
-              Let&apos;s Create Your{" "}
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-medium text-[#171513] leading-[1.15]">
+              Reserve Your Date for a{" "}
               <span className="italic text-[#641F32] font-normal">
-                Signature Look.
+                Timeless Look.
               </span>
             </h2>
-            <p className="text-base text-[#171513]/75 leading-relaxed font-light">
-              Planning your wedding, engagement, family celebration, or photoshoot? 
-              Fill in your event details or chat directly on WhatsApp to check availability.
+            <div className="w-14 h-[1px] bg-[#B89A62]" />
+            <p className="text-sm sm:text-base text-[#171513]/75 leading-relaxed font-light">
+              Whether you are preparing for your muhurtham, engagement, reception, or an intimate family celebration, share your occasion details below to check date availability directly on WhatsApp.
             </p>
 
-            {/* Contact Details Card */}
-            <div className="pt-4 space-y-5 border-t border-[#D8C19A]/60">
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-4 group"
-              >
-                <div className="p-3 border border-[#B89A62]/70 text-[#641F32] bg-[#D8C19A]/15 group-hover:bg-[#641F32] group-hover:text-[#FAF7F0] transition-colors">
-                  <InstagramBrandIcon />
-                </div>
-                <div>
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#171513]/60">
-                    Instagram Portfolio
-                  </p>
-                  <p className="font-serif text-lg text-[#171513] group-hover:text-[#641F32] transition-colors">
-                    @makeoverbymangala
-                  </p>
-                </div>
-              </a>
-
+            {/* Studio Contact Details */}
+            <div className="pt-4 space-y-5 border-t border-[#D8C19A]/50">
               <a
                 href={quickConsultUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-start gap-4 group"
+                className="flex items-center gap-4 group"
               >
-                <div className="p-3 border border-[#B89A62]/70 text-[#641F32] bg-[#D8C19A]/15 group-hover:bg-[#641F32] group-hover:text-[#FAF7F0] transition-colors">
-                  <Phone size={20} strokeWidth={1.75} />
+                <div className="w-12 h-12 border border-[#B89A62]/60 text-[#641F32] bg-[#F3ECE0]/60 group-hover:bg-[#641F32] group-hover:text-[#FAF7F0] transition-colors flex items-center justify-center shrink-0">
+                  <Phone size={18} strokeWidth={1.6} />
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#171513]/60">
-                    Call / WhatsApp Bookings
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#171513]/55">
+                    Call &amp; WhatsApp Concierge
                   </p>
-                  <p className="font-serif text-lg text-[#171513] group-hover:text-[#641F32] transition-colors">
+                  <p className="font-serif text-xl text-[#171513] group-hover:text-[#641F32] transition-colors mt-0.5">
                     +91 80736 20462
                   </p>
                 </div>
               </a>
 
-              <div className="flex items-start gap-4">
-                <div className="p-3 border border-[#B89A62]/70 text-[#641F32] bg-[#D8C19A]/15">
-                  <MapPin size={20} strokeWidth={1.75} />
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-4 group"
+              >
+                <div className="w-12 h-12 border border-[#B89A62]/60 text-[#641F32] bg-[#F3ECE0]/60 group-hover:bg-[#641F32] group-hover:text-[#FAF7F0] transition-colors flex items-center justify-center shrink-0">
+                  <InstagramBrandIcon />
                 </div>
                 <div>
-                  <p className="text-[11px] uppercase tracking-[0.18em] text-[#171513]/60">
-                    Service Coverage &amp; Travel
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#171513]/55">
+                    Latest Bridal &amp; Client Reels
                   </p>
-                  <p className="font-serif text-lg text-[#171513]">
-                    All Across Karnataka &amp; Destination Venues
+                  <p className="font-serif text-xl text-[#171513] group-hover:text-[#641F32] transition-colors mt-0.5">
+                    @makeoverbymangala
+                  </p>
+                </div>
+              </a>
+
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 border border-[#B89A62]/60 text-[#641F32] bg-[#F3ECE0]/60 flex items-center justify-center shrink-0">
+                  <MapPin size={18} strokeWidth={1.6} />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#171513]/55">
+                    On-Location Studio Service
+                  </p>
+                  <p className="font-serif text-xl text-[#171513] mt-0.5">
+                    Bengaluru &amp; Across Karnataka
                   </p>
                 </div>
               </div>
 
-              <div className="pt-2">
+              <div className="pt-3">
                 <a
                   href={quickConsultUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-6 py-3 border border-[#641F32] text-[#641F32] hover:bg-[#641F32] hover:text-[#FAF7F0] text-xs uppercase tracking-[0.18em] font-medium transition-colors"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 border border-[#641F32] text-[#641F32] hover:bg-[#641F32] hover:text-[#FAF7F0] text-xs uppercase tracking-[0.18em] font-medium transition-all duration-300"
                 >
-                  <MessageCircle size={16} />
-                  <span>Direct WhatsApp Consultation</span>
+                  <MessageCircle size={15} />
+                  <span>Chat Directly on WhatsApp</span>
                 </a>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Consultation Form -> Opens WhatsApp Directly */}
+          {/* Right Appointment Inquiry Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="lg:col-span-7 bg-white/75 border border-[#B89A62]/60 p-8 sm:p-10 shadow-sm"
+            className="lg:col-span-7 bg-[#F3ECE0]/55 border border-[#B89A62]/55 p-7 sm:p-11 shadow-[0_14px_40px_rgba(23,21,19,0.04)]"
           >
+            <div className="flex items-center justify-between pb-5 mb-6 border-b border-[#D8C19A]/55">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.22em] text-[#641F32] font-medium">
+                  Appointment Inquiry
+                </p>
+                <h3 className="font-serif text-2xl sm:text-3xl text-[#171513] mt-1">
+                  Share Your Event Details
+                </h3>
+              </div>
+              <Sparkles size={20} className="text-[#B89A62] hidden sm:block" />
+            </div>
+
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-[11px] uppercase tracking-[0.16em] text-[#171513]/80 font-medium mb-2">
-                    Your Name *
+                    Your Full Name *
                   </label>
                   <input
                     type="text"
@@ -180,8 +192,8 @@ export default function Booking() {
                     required
                     value={formData.name}
                     onChange={handleChange}
-                    placeholder="Enter your full name"
-                    className="w-full px-4 py-3 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] focus:outline-none focus:border-[#641F32]"
+                    placeholder="e.g., Ananya Rao"
+                    className="w-full px-4 py-3.5 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] placeholder:text-[#171513]/35 focus:outline-none focus:border-[#641F32] transition-colors"
                   />
                 </div>
                 <div>
@@ -195,7 +207,7 @@ export default function Booking() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+91 XXXXX XXXXX"
-                    className="w-full px-4 py-3 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] focus:outline-none focus:border-[#641F32]"
+                    className="w-full px-4 py-3.5 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] placeholder:text-[#171513]/35 focus:outline-none focus:border-[#641F32] transition-colors"
                   />
                 </div>
               </div>
@@ -211,7 +223,7 @@ export default function Booking() {
                     required
                     value={formData.date}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] focus:outline-none focus:border-[#641F32]"
+                    className="w-full px-4 py-3.5 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] focus:outline-none focus:border-[#641F32] transition-colors"
                   />
                 </div>
                 <div>
@@ -222,7 +234,7 @@ export default function Booking() {
                     name="service"
                     value={formData.service}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] focus:outline-none focus:border-[#641F32]"
+                    className="w-full px-4 py-3.5 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] focus:outline-none focus:border-[#641F32] transition-colors"
                   >
                     <option value="Bridal Makeup">Bridal Makeup (South / North / Muhurtham)</option>
                     <option value="Engagement / Reception">Engagement / Reception Makeover</option>
@@ -243,31 +255,31 @@ export default function Booking() {
                   name="venue"
                   value={formData.venue}
                   onChange={handleChange}
-                  placeholder="e.g., Bengaluru, Mysuru, Mangaluru, Hubballi, or Venue Name"
-                  className="w-full px-4 py-3 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] focus:outline-none focus:border-[#641F32]"
+                  placeholder="e.g., Bengaluru, Mysuru, Mangaluru, or Venue Name"
+                  className="w-full px-4 py-3.5 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] placeholder:text-[#171513]/35 focus:outline-none focus:border-[#641F32] transition-colors"
                 />
               </div>
 
               <div>
                 <label className="block text-[11px] uppercase tracking-[0.16em] text-[#171513]/80 font-medium mb-2">
-                  Tell Me About Your Look or Occasion
+                  Additional Occasion Details
                 </label>
                 <textarea
                   name="notes"
                   rows="3"
                   value={formData.notes}
                   onChange={handleChange}
-                  placeholder="Share your occasion details, number of people, or any preferences..."
-                  className="w-full px-4 py-3 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] focus:outline-none focus:border-[#641F32]"
+                  placeholder="Share your occasion timing, number of looks, or any preferences..."
+                  className="w-full px-4 py-3.5 bg-[#FAF7F0] border border-[#D8C19A] text-sm text-[#171513] placeholder:text-[#171513]/35 focus:outline-none focus:border-[#641F32] transition-colors"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full py-4 bg-[#641F32] text-[#FAF7F0] text-xs uppercase tracking-[0.2em] font-medium hover:bg-[#4d1726] transition-colors flex items-center justify-center gap-2.5 shadow-sm"
+                className="w-full py-4 bg-[#641F32] text-[#FAF7F0] text-xs uppercase tracking-[0.22em] font-medium hover:bg-[#4A1524] transition-all duration-300 flex items-center justify-center gap-2.5 shadow-sm"
               >
                 <Calendar size={15} />
-                <span>Send Booking Inquiry via WhatsApp</span>
+                <span>Send Inquiry via WhatsApp</span>
                 <Send size={14} />
               </button>
             </form>
